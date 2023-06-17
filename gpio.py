@@ -11,6 +11,6 @@ try:
         value_4 = GPIO.input(4)
         print("GPIO 14 Value: ", value_14)
         print("GPIO 4 Value: ", value_4)
-        time.sleep(1)
+        time.sleep(0.01)
 except KeyboardInterrupt:
     GPIO.cleanup()
