@@ -20,7 +20,7 @@ while True:
         print ("Sending request")
 
         except Exception as ex:
-            print ex
+            print(ex)
             raw_input()
         
         client_socket.close()
