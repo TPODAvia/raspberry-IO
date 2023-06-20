@@ -3,6 +3,6 @@
     "configuration": "cpu=atmega328old",
     "board": "arduino:avr:nano",
     "programmer": "avrispmkii",
-    "sketch": "Blink/Blink.ino",
-    "output": "../ArduinoOutput"
+    "output": "../ArduinoOutput",
+    "sketch": "Uart_serial/Uart_serial.ino"
 }
