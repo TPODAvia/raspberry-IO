@@ -6,7 +6,6 @@ See the youtube tutorial: https://www.youtube.com/watch?v=YEGKD6JQJyM&ab_channel
 ```bash
 sudo apt-get update
 
-mkdir /lowlevel_project
 cd /lowlevel_project
 sudo apt-get install stlink-tools gcc-arm-none-eabi cmake libusb-1.0-0-dev -y
 git clone https://github.com/texane/stlink stlink-repo
