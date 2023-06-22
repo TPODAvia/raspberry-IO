@@ -1,79 +1,112 @@
-Easy "clone and go" repository for a libopencm3 based project.
+# Easy "clone and go" repository for a libopencm3 based project.
 
-see the youtube howto: https://www.youtube.com/watch?v=YEGKD6JQJyM&ab_channel=LowLevelLearning
+See the youtube tutorial: https://www.youtube.com/watch?v=YEGKD6JQJyM&ab_channel=LowLevelLearning
 
+#### Instructions Setup
+```bash
 sudo apt-get update
 
-mkdir ~/lowlevel_project
-cd ~/lowlevel_project
+mkdir /lowlevel_project
+cd /lowlevel_project
 sudo apt-get install stlink-tools gcc-arm-none-eabi cmake libusb-1.0-0-dev -y
 git clone https://github.com/texane/stlink stlink-repo
-git clone https://github.com/TPODAvia/raspberry-IO.git
 cd stlink-repo
 make -j1
 
+cd ..
 git clone --branch v1.7.0 https://github.com/stlink-org/stlink.git
 cd stlink/
 make -j1
 
-git clone https://github.com/stm32duino/stm32flash
-cd stm32flash/
-sudo make install
+cd ..
+git clone https://github.com/libopencm3/libopencm3-template.git
+cd libopencm3
+make TARGETS='stm32/f0 stm32/f4' -j1
 
-# Instructions
- 1. git clone --recurse-submodules https://github.com/libopencm3/libopencm3-template.git your-project
- 2. cd your-project
- 3. make TARGETS='stm32/f0 stm32/f4' -j1 # (Only needed once)
- cd ..
- 4. make
+cd ..
 
-st-flash --reset write blink-led.bin 0x8000000
+sudo reboot
+```
 
-It seems that you are trying to get information about your connected ST-Link programmer and STM32 device using the st-info --probe command. The output you provided shows that the device is recognized, but the chipid and description are unknown:
+#### Flash to the STM microcontroller
+Create a folder were the code be implemented in the embedded systems. The `STM32/my-project/` folder is brovided for the example. To compile the STM32 programs using `make` command:
+```bash
+cd ..
+cd /STM32/my-project
+make
+```
+To get information about your connected ST-Link programmer and STM32 device using the command:
+```bash
+st-info --probe
+```
 
+The output provided shows that the device is recognized:
+
+```bash
 Found 1 stlink programmers
- serial: 303030303030303030303031
-openocd: "\x30\x30\x30\x30\x30\x30\x30\x30\x30\x30\x30\x31"
-  flash: 0 (pagesize: 0)
-   sram: 0
- chipid: 0x0000
-  descr: unknown device
+ serial: 563f6c06657248543049223f
+openocd: "\x56\x3f\x6c\x06\x65\x72\x48\x54\x30\x49\x22\x3f"
+  flash: 65536 (pagesize: 1024)
+   sram: 8192
+ chipid: 0x0440
+  descr: F0 device
+```
+
 To get more information about your device, you can try using the following commands:
 
 Display the serial code of the device:
+```bash
 st-info --serial
+```
+
 Display the hex escaped serial code of the device:
+```bash
 st-info --hla-serial
+```
+
 Display the amount of flash memory available in the device:
+```bash
 st-info --flash
+```
+
 Display the amount of SRAM memory available in the device:
+```bash
 st-info --sram
+```
+
 Display the page size of the device:
+```bash
 st-info --pagesize
+```
+
 Display the chip ID of the device:
+```bash
 st-info --chipid
+```
+
 Display the textual description of the device:
+```bash
 st-info --descr
+```
 
+The final step is to flash your project:
+```bash
+st-flash --reset write blink-led.bin 0x8000000
+```
 
-If you have an older git, or got ahead of yourself and skipped the ```--recurse-submodules```
-you can fix things by running ```git submodule update --init``` (This is only needed once)
+### Debug mode
 
-# Directories
-* my-project contains your application
-* my-common-code contains something shared.
+See the youtube for the detail instructions: https://www.youtube.com/watch?v=_1u7IOnivnM&ab_channel=LowLevelLearning
 
-# As a template
-You should replace this with your _own_ README if you are using this
-as a template.
+Install the enssesary library:
 
+```bash
+sudo apt-get install openocd gdb-multiarch -y
+```
 
-# Debug mode
+Usage:
 
-See the youtube howto: https://www.youtube.com/watch?v=_1u7IOnivnM&ab_channel=LowLevelLearning
-
-sudo apt-get install openocd
+```bash
 openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f0x.cfg
-
-sudo apt install gdb-multiarch
 gdb-multiarch ./blink-led.elf
+```

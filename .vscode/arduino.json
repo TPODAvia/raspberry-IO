@@ -1,8 +1,0 @@
-{
-    "port": "/dev/ttyUSB0",
-    "configuration": "cpu=atmega328old",
-    "board": "arduino:avr:nano",
-    "programmer": "avrispmkii",
-    "output": "../ArduinoOutput",
-    "sketch": "Uart_serial/Uart_serial.ino"
-}
