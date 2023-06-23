@@ -17,8 +17,20 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-BINARY = adc
+PROJECT = adc
+BUILD_DIR = bin
 
-LDSCRIPT = ../stm32f0-discovery.ld
+CFILES = adc.c
 
-include ../../Makefile.include
+# TODO - you will need to edit these two lines!
+DEVICE=stm32f051r8t6
+OOCD_FILE = board/stm32f0discovery.cfg
+
+# You shouldn't have to edit anything below here.
+VPATH += $(SHARED_DIR)
+INCLUDES += $(patsubst %,-I%, . $(SHARED_DIR))
+OPENCM3_DIR=../../../libopencm3
+
+include $(OPENCM3_DIR)/mk/genlink-config.mk
+include ../rules.mk
+include $(OPENCM3_DIR)/mk/genlink-rules.mk

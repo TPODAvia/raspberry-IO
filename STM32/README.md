@@ -7,7 +7,7 @@ See the youtube tutorial: https://www.youtube.com/watch?v=YEGKD6JQJyM&ab_channel
 sudo apt-get update
 
 cd /lowlevel_project
-sudo apt-get install stlink-tools gcc-arm-none-eabi cmake libusb-1.0-0-dev -y
+sudo apt-get install stlink-tools net-tools gcc-arm-none-eabi cmake libusb-1.0-0-dev -y
 git clone https://github.com/texane/stlink stlink-repo
 cd stlink-repo
 make -j1
@@ -109,5 +109,43 @@ Usage:
 
 ```bash
 openocd -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f0x.cfg
+```
+The output shoul look like this:
+
+```bash
+Open On-Chip Debugger 0.10.0
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 1000 kHz
+adapter_nsrst_delay: 100
+none separate
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : Unable to match requested speed 1000 kHz, using 950 kHz
+Info : clock speed 950 kHz
+Info : STLINK v2 JTAG v37 API v2 SWIM v0 VID 0x0483 PID 0x3748
+Info : using stlink api v2
+Info : Target voltage: 2.893112
+Info : stm32f0x.cpu: hardware has 4 breakpoints, 2 watchpoints
+```
+
+
+```
+sudo netstat -tulpn | grep openocd
+```
+
+And the output:
+
+```bash
+tcp        0      0 127.0.0.1:6666          0.0.0.0:*               LISTEN      4872/openocd        
+tcp        0      0 127.0.0.1:4444          0.0.0.0:*               LISTEN      4872/openocd        
+tcp        0      0 127.0.0.1:3333          0.0.0.0:*               LISTEN      4872/openocd
+```
+
+
+```bash
 gdb-multiarch ./blink-led.elf
+target extended-remote 127.0.0.1:3333
 ```
