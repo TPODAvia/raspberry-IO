@@ -24,6 +24,8 @@ make TARGETS='stm32/f0 stm32/f4' -j1
 
 cd ..
 
+git clone https://github.com/libopencm3/libopencm3-examples.git
+
 sudo reboot
 ```
 
