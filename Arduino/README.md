@@ -4,7 +4,7 @@ See the detailed tutorial: https://www.youtube.com/watch?v=2BJ-iJF04VA&ab_channe
 
 ![alt text](../docs/Arduino.png)
 
-In the bottom right corner choose propriate Serial Port, Board Type configuration and Programmer
+In the bottom right corner choose property Serial Port, Board Type configuration and Programmer
 
 ![alt text](../docs/BottomRight.png)
 
