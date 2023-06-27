@@ -18,7 +18,7 @@ cd stlink/
 make -j1
 
 cd ..
-git clone https://github.com/libopencm3/libopencm3-template.git
+git clone https://github.com/libopencm3/libopencm3.git
 cd libopencm3
 make TARGETS='stm32/f0 stm32/f4' -j1
 
