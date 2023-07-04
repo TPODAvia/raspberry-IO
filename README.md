@@ -11,7 +11,7 @@ Connect to the companion computer HOST for example `ubuntu@192.168.1.8`, type a 
 
 Clone this project:
 ```bash
-sudo mkdir ~/lowlevel_project
+mkdir ~/lowlevel_project
 cd ~/lowlevel_project
 git clone https://github.com/TPODAvia/raspberry-IO.git
 ```
