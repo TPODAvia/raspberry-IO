@@ -14,7 +14,7 @@ int main(void) {
 
 // PWM setup
 // Reset TIM2
-timer_reset(TIM2);
+// timer_reset(TIM2);
 
 // Set the Timer mode to no divisor (72MHz), Edge-aligned, up-counting
 timer_set_mode(TIM2, TIM_CR1_CKD_CK_INT, TIM_CR1_CMS_EDGE, TIM_CR1_DIR_UP);

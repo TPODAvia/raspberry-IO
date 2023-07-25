@@ -6,7 +6,8 @@ See the youtube tutorial: https://www.youtube.com/watch?v=YEGKD6JQJyM&ab_channel
 ```bash
 sudo apt-get update
 
-cd /lowlevel_project
+mkdir ~/st_link
+cd ~/st_link
 sudo apt-get install stlink-tools net-tools gcc-arm-none-eabi cmake libusb-1.0-0-dev -y
 git clone https://github.com/texane/stlink stlink-repo
 cd stlink-repo
@@ -18,10 +19,16 @@ cd stlink/
 make -j1
 
 cd ..
+
+```
+
+Navigate to your workspace
+
+```bash
 git clone https://github.com/libopencm3/libopencm3.git
 cd libopencm3
-make TARGETS='stm32/f0 stm32/f4' -j1
-
+# make TARGETS='stm32/f0 stm32/f4' -j1
+make -j1
 cd ..
 
 git clone https://github.com/libopencm3/libopencm3-examples.git
