@@ -17,10 +17,10 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-PROJECT = robot_code
+PROJECT = pwm_stm
 BUILD_DIR = bin
 
-CFILES = robot_code.c
+CFILES = pwm_stm.c
 
 # TODO - you will need to edit these two lines!
 DEVICE=stm32f103c6

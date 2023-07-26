@@ -23,7 +23,7 @@ BUILD_DIR = bin
 CFILES = blink.c
 
 # TODO - you will need to edit these two lines!
-DEVICE=stm32f103c8
+DEVICE=stm32f103c6
 OOCD_FILE = board/stm32f4discovery.cfg
 
 # You shouldn't have to edit anything below here.

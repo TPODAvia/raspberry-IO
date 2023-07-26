@@ -23,8 +23,8 @@ BUILD_DIR = bin
 CFILES = usart.c
 
 # TODO - you will need to edit these two lines!
-DEVICE=stm32f051r8t6
-OOCD_FILE = board/stm32f0discovery.cfg
+DEVICE=stm32f103c6
+OOCD_FILE = board/stm32f4discovery.cfg
 
 # You shouldn't have to edit anything below here.
 VPATH += $(SHARED_DIR)
